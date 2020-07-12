@@ -6,7 +6,7 @@ namespace Kryptos4
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var factory = new KryptosCypherDecryptCommandFactory();
         }
     }
 }
