@@ -5,7 +5,7 @@ namespace Kryptos4
     class KryptosCypherDecryptCommandFactory
     {
 
-        private string defaultsourceText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR";
+        private string defaultSourceText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR";
         private string defaultAlphabet = "KRYPTOSABCDEFGHIJLMNQUVWXZ";
         private char[,] defaultLookupTable;
         private string nextKeyword;
@@ -32,7 +32,7 @@ namespace Kryptos4
         public KryptosCypherDecryptCommand GetNextCommand()
         {
             var command = new KryptosCypherDecryptCommand {
-                sourceText = defaultsourceText,
+                sourceText = defaultSourceText,
                 alphabet = defaultAlphabet,
                 lookupTable = defaultLookupTable,
                 keyword = nextKeyword
