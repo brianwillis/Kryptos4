@@ -53,8 +53,8 @@ namespace Kryptos4
             var command = new KryptosCypherDecryptCommand {
                 sourceText = defaultSourceText,
                 alphabet = defaultAlphabet,
-                lookupTable = defaultLookupTable,
-                keyword = nextKeyword
+                keyword = nextKeyword,
+                lookupTable = defaultLookupTable
             };
 
             nextKeyword = GenerateNextKeyword(nextKeyword);

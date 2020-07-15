@@ -4,7 +4,7 @@ namespace Kryptos4
     {
         public string sourceText;
         public string alphabet;
-        public char[,] lookupTable;
         public string keyword;
+        public char[,] lookupTable;
     }
 }
