@@ -2,7 +2,7 @@ using Xunit;
 
 namespace Kryptos4
 {
-    class Kryptos4SolutionScorerTest
+    public class Kryptos4SolutionScorerTest
     {
         [Fact]
         public void Score_WhenGivenPerfectSolution_ScoreEqualsOneHundred() {
@@ -50,6 +50,6 @@ namespace Kryptos4
             scorer.Score(result);
 
             Assert.Equal(30, result.score);
-        }    
+        }
     }
 }
