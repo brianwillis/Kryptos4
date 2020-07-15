@@ -5,15 +5,29 @@ namespace Kryptos4
     class KryptosCypherDecryptCommandFactory
     {
 
-        private string defaultSourceText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR";
-        private string defaultAlphabet = "KRYPTOSABCDEFGHIJLMNQUVWXZ";
-        private char[,] defaultLookupTable;
+        private string defaultSourceText;
+        private string defaultAlphabet;
         private string nextKeyword;
+        private char[,] defaultLookupTable;
         
+        public KryptosCypherDecryptCommandFactory(string defaultSourceText, string defaultAlphabet, string nextKeyword)
+        {
+            this.defaultSourceText = defaultSourceText;
+            this.defaultAlphabet = defaultAlphabet;
+            this.nextKeyword = nextKeyword;
+            BuildLookupTable();
+        }
+
         public KryptosCypherDecryptCommandFactory()
         {
-            nextKeyword = "A";
+            defaultSourceText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR";
+            defaultAlphabet = "KRYPTOSABCDEFGHIJLMNQUVWXZ";
+            nextKeyword = GenerateNextKeyword(string.Empty);
+            BuildLookupTable();
+        }
 
+        private void BuildLookupTable()
+        {
             defaultLookupTable = new char[defaultAlphabet.Length, defaultAlphabet.Length];
             for (var i = 0; i < defaultAlphabet.Length; i++)
             {
@@ -31,6 +45,11 @@ namespace Kryptos4
 
         public KryptosCypherDecryptCommand GetNextCommand()
         {
+            if (nextKeyword = "AAAAA")
+            {
+                return null;
+            }
+            
             var command = new KryptosCypherDecryptCommand {
                 sourceText = defaultSourceText,
                 alphabet = defaultAlphabet,
