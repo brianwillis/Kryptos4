@@ -45,7 +45,7 @@ namespace Kryptos4
 
         public KryptosCypherDecryptCommand GetNextCommand()
         {
-            if (nextKeyword = "AAAAA")
+            if (nextKeyword == "AAAAA")
             {
                 return null;
             }
