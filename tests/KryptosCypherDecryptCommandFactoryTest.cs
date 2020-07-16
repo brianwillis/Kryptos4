@@ -16,7 +16,7 @@ namespace Kryptos4
         public void KeywordIncrementsCorrectly()
         {
             var factory = new KryptosCypherDecryptCommandFactory();
-            var command = new KryptosCypherDecryptCommand();
+            var command = new DecryptCommand();
             
             for (var i = 0; i <= 26; i++)
             {

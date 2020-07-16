@@ -1,6 +1,6 @@
 namespace Kryptos4
 {
-    class KryptosCypherDecryptCommand
+    class DecryptCommand
     {
         public string sourceText;
         public string alphabet;

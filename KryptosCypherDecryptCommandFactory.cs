@@ -43,14 +43,14 @@ namespace Kryptos4
             }
         }
 
-        public KryptosCypherDecryptCommand GetNextCommand()
+        public DecryptCommand GetNextCommand()
         {
             if (nextKeyword == "AAAAA")
             {
                 return null;
             }
             
-            var command = new KryptosCypherDecryptCommand {
+            var command = new DecryptCommand {
                 sourceText = defaultSourceText,
                 alphabet = defaultAlphabet,
                 keyword = nextKeyword,

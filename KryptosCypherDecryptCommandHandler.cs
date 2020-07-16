@@ -2,7 +2,7 @@ namespace Kryptos4
 {
     class KryptosCypherDecryptCommandHandler
     {
-        public DecryptCommandResult Solve(KryptosCypherDecryptCommand command)
+        public DecryptCommandResult Solve(DecryptCommand command)
         {
             var result = new DecryptCommandResult();
             var keywordIndex = 0;
