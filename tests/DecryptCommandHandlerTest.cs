@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Kryptos4
 {
-    public class KryptosCypherDecryptCommandHandlerTest
+    public class DecryptCommandHandlerTest
     {
         [Fact]
         public void Solve_WhenSolvingKryptos1_SolutionIsCorrect()
@@ -14,7 +14,7 @@ namespace Kryptos4
                 "PALIMPSEST"
             );
             var command = factory.GetNextCommand();
-            var handler = new KryptosCypherDecryptCommandHandler();
+            var handler = new DecryptCommandHandler();
             
             var result = handler.Solve(command);
 
@@ -33,7 +33,7 @@ namespace Kryptos4
                 "ABSCISSA"
             );
             var command = factory.GetNextCommand();
-            var handler = new KryptosCypherDecryptCommandHandler();
+            var handler = new DecryptCommandHandler();
             
             var result = handler.Solve(command);
             

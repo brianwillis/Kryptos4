@@ -1,6 +1,6 @@
 namespace Kryptos4
 {
-    class KryptosCypherDecryptCommandHandler
+    class DecryptCommandHandler
     {
         public DecryptCommandResult Solve(DecryptCommand command)
         {
