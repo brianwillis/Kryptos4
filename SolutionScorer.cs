@@ -12,6 +12,7 @@ namespace Kryptos4
             if (northeastPresentInCorrectPlace && berlinPresentInCorrectPlace && clockPresentInCorrectPlace)
             {
                 result.score = 100;
+                result.narrative.Add("Perfect solution.");
                 return;
             }
 
@@ -21,40 +22,49 @@ namespace Kryptos4
             if (northeastPresentInCorrectPlace)
             {
                 result.score += 30;
+                result.narrative.Add("Northeast is present in the correct place.");
             }
             else if (IsNortheastPresentInWrongPlace(result.solution))
             {
                 result.score += 20;
+                result.narrative.Add("Northeast is present in the wrong place.");
             }
             else if (IsNortheastScatteredInTheSolution(result.solution))
             {
                 result.score += 10;
+                result.narrative.Add("Northeast is scattered in the solution.");
             }
 
             if (berlinPresentInCorrectPlace)
             {
                 result.score += 30;
+                result.narrative.Add("Berlin is present in the correct place.");
             }
             else if (IsBerlinPresentInWrongPlace(result.solution))
             {
                 result.score += 20;
+                result.narrative.Add("Berlin is present in the wrong place.");
             }
             else if (IsBerlinScatteredInTheSolution(result.solution))
             {
                 result.score += 10;
+                result.narrative.Add("Berlin is scattered in the solution.");
             }
 
             if (clockPresentInCorrectPlace)
             {
                 result.score += 30;
+                result.narrative.Add("Clock is present in the correct place.");
             }
             else if (IsClockPresentInWrongPlace(result.solution))
             {
                 result.score += 20;
+                result.narrative.Add("Clock is present in the wrong place.");
             }
             else if (IsClockScatteredInTheSolution(result.solution))
             {
                 result.score += 10;
+                result.narrative.Add("Clock is scattered in the solution.");
             }
         }
 
