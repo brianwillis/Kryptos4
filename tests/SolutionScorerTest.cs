@@ -2,14 +2,14 @@ using Xunit;
 
 namespace Kryptos4
 {
-    public class Kryptos4SolutionScorerTest
+    public class SolutionScorerTest
     {
         [Fact]
         public void Score_WhenGivenPerfectSolution_ScoreEqualsOneHundred() {
             var result = new KryptosCypherDecryptResult {
                 solution = "                         NORTHEAST                             BERLINCLOCK                       "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -21,7 +21,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = "                         NORTHEAST                                                               "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -33,7 +33,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = "                                                               BERLIN                            "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -45,7 +45,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = "                                                                     CLOCK                       "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -57,7 +57,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = "NORTHEAST                                                                                        "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -69,7 +69,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = "BERLIN                                                                                           "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -81,7 +81,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = "CLOCK                                                                                            "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -93,7 +93,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = " N O R T H E A S T                                                                               "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -105,7 +105,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = " B E R L I N                                                                                     "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 
@@ -117,7 +117,7 @@ namespace Kryptos4
             var result = new KryptosCypherDecryptResult {
                 solution = " C L O C K                                                                                       "
             };
-            var scorer = new Kryptos4SolutionScorer();
+            var scorer = new SolutionScorer();
 
             scorer.Score(result);
 

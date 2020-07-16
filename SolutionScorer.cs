@@ -1,6 +1,6 @@
 namespace Kryptos4
 {
-    class Kryptos4SolutionScorer
+    class SolutionScorer
     {
         public void Score(KryptosCypherDecryptResult result) {
             result.score = 0;
