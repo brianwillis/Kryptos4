@@ -6,7 +6,7 @@ namespace Kryptos4
     {
         [Fact]
         public void Score_WhenGivenPerfectSolution_ScoreEqualsOneHundred() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = "                         NORTHEAST                             BERLINCLOCK                       "
             };
             var scorer = new SolutionScorer();
@@ -18,7 +18,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenNortheastInRightPlace_ScoreEqualsThirty() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = "                         NORTHEAST                                                               "
             };
             var scorer = new SolutionScorer();
@@ -30,7 +30,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenBerlinInRightPlace_ScoreEqualsThiry() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = "                                                               BERLIN                            "
             };
             var scorer = new SolutionScorer();
@@ -42,7 +42,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenClockInRightPlace_ScoreEqualsThiry() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = "                                                                     CLOCK                       "
             };
             var scorer = new SolutionScorer();
@@ -54,7 +54,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenNortheastInWrongPlace_ScoreEqualsTwenty() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = "NORTHEAST                                                                                        "
             };
             var scorer = new SolutionScorer();
@@ -66,7 +66,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenBerlinInWrongPlace_ScoreEqualsTwenty() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = "BERLIN                                                                                           "
             };
             var scorer = new SolutionScorer();
@@ -78,7 +78,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenClockInWrongPlace_ScoreEqualsTwenty() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = "CLOCK                                                                                            "
             };
             var scorer = new SolutionScorer();
@@ -90,7 +90,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenNortheastScattered_ScoreEqualsTen() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = " N O R T H E A S T                                                                               "
             };
             var scorer = new SolutionScorer();
@@ -102,7 +102,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenBerlinScattered_ScoreEqualsTen() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = " B E R L I N                                                                                     "
             };
             var scorer = new SolutionScorer();
@@ -114,7 +114,7 @@ namespace Kryptos4
 
         [Fact]
         public void Score_WhenGivenClockScattered_ScoreEqualsTen() {
-            var result = new KryptosCypherDecryptResult {
+            var result = new DecryptCommandResult {
                 solution = " C L O C K                                                                                       "
             };
             var scorer = new SolutionScorer();

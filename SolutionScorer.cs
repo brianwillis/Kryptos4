@@ -2,7 +2,7 @@ namespace Kryptos4
 {
     class SolutionScorer
     {
-        public void Score(KryptosCypherDecryptResult result) {
+        public void Score(DecryptCommandResult result) {
             result.score = 0;
             var northeastPresentInCorrectPlace = IsNortheastPresentInCorrectPlace(result.solution);
             var berlinPresentInCorrectPlace = IsBerlinPresentInCorrectPlace(result.solution);
