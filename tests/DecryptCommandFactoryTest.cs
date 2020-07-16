@@ -2,12 +2,12 @@ using Xunit;
 
 namespace Kryptos4
 {
-    public class KryptosCypherDecryptCommandFactoryTest
+    public class DecryptCommandFactoryTest
     {
         [Fact]
         public void FirstKeywordIsA()
         {
-            var factory = new KryptosCypherDecryptCommandFactory();
+            var factory = new DecryptCommandFactory();
             var command = factory.GetNextCommand();
             Assert.Equal("A", command.keyword);
         }
@@ -15,7 +15,7 @@ namespace Kryptos4
         [Fact]
         public void KeywordIncrementsCorrectly()
         {
-            var factory = new KryptosCypherDecryptCommandFactory();
+            var factory = new DecryptCommandFactory();
             var command = new DecryptCommand();
             
             for (var i = 0; i <= 26; i++)

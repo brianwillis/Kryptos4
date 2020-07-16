@@ -8,7 +8,7 @@ namespace Kryptos4
         [Fact]
         public void Solve_WhenSolvingKryptos1_SolutionIsCorrect()
         {
-            var factory = new KryptosCypherDecryptCommandFactory(
+            var factory = new DecryptCommandFactory(
                 "EMUFPHZLRFAXYUSDJKZLDKRNSHGNFIVJYQTQUXQBQVYUVLLTREVJYQTMKYRDMFD",
                 "KRYPTOSABCDEFGHIJLMNQUVWXZ",
                 "PALIMPSEST"
@@ -27,7 +27,7 @@ namespace Kryptos4
         [Fact]
         public void Solve_WhenSolvingKryptos2_SolutionIsCorrect()
         {
-            var factory = new KryptosCypherDecryptCommandFactory(
+            var factory = new DecryptCommandFactory(
                 "VFPJUDEEHZWETZYVGWHKKQETGFQJNCEGGWHKK?DQMCPFQZDQMMIAGPFXHQRLGTIMVMZJANQLVKQEDAGDVFRPJUNGEUNAQZGZLECGYUXUEENJTBJLBQCRTBJDFHRRYIZETKZEMVDUFKSJHKFWHKUWQLSZFTIHHDDDUVH?DWKBFUFPWNTDFIYCUQZEREEVLDKFEZMOQQJLTTUGSYQPFEUNLAVIDXFLGGTEZ?FKZBSFDQVGOGIPUFXHHDRKFFHQNTGPUAECNUVPDJMQCLQUMUNEDFQELZZVRRGKFFVOEEXBDMVPNFQXEZLGREDNQFMPNZGLFLPMRJQYALMGNUVPDXVKPDQUMEBEDMHDAFMJGZNUPLGEWJLLAETG",
                 "KRYPTOSABCDEFGHIJLMNQUVWXZ",
                 "ABSCISSA"

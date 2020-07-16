@@ -2,7 +2,7 @@ using System;
 
 namespace Kryptos4
 {
-    class KryptosCypherDecryptCommandFactory
+    class DecryptCommandFactory
     {
 
         private string defaultSourceText;
@@ -10,7 +10,7 @@ namespace Kryptos4
         private string nextKeyword;
         private char[,] defaultLookupTable;
         
-        public KryptosCypherDecryptCommandFactory(string defaultSourceText, string defaultAlphabet, string nextKeyword)
+        public DecryptCommandFactory(string defaultSourceText, string defaultAlphabet, string nextKeyword)
         {
             this.defaultSourceText = defaultSourceText;
             this.defaultAlphabet = defaultAlphabet;
@@ -18,7 +18,7 @@ namespace Kryptos4
             BuildLookupTable();
         }
 
-        public KryptosCypherDecryptCommandFactory()
+        public DecryptCommandFactory()
         {
             defaultSourceText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR";
             defaultAlphabet = "KRYPTOSABCDEFGHIJLMNQUVWXZ";
