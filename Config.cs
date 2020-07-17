@@ -2,12 +2,12 @@ namespace Kryptos4
 {
     static class Config
     {
+        //The folder to save solutions to.
+        public const string outputFolder = "";
+
         //Potential solutions receive a score from 0 (bad) to 100 (perfect).
         //We only report on solutions >= minimumScoreToReport.
         public const int minimumScoreToReport = 40;
-
-        //The folder to save solutions to.
-        public const string outputFolder = "";
 
         //Keywords are generated from A -> Z, then from AA -> ZZ, and so on.
         //The keyword that we start with is set by firstKeyword. Set this to something higher than "A" (e.g. "AAAAA") to skip over shorter keywords.

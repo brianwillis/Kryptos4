@@ -13,9 +13,15 @@ The application is a .net core console application written in C#. Compiled versi
 Compiling
 ---------
 
+Before compiling, it's a good idea to read through Config.cs to see if any configuration needs to be set. Comments in the file explain how everything works. I've tried to choose sensible defaults. At the very least it's a good idea to specify an output folder for results to be saved in.
+
 To build the application:
 
     dotnet build
+
+To run unit tests:
+
+    dotnet test
 
 To run the application:
 
