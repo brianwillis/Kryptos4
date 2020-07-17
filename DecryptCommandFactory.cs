@@ -20,9 +20,9 @@ namespace Kryptos4
 
         public DecryptCommandFactory()
         {
-            defaultSourceText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR";
-            defaultAlphabet = "KRYPTOSABCDEFGHIJLMNQUVWXZ";
-            nextKeyword = GenerateNextKeyword(string.Empty);
+            defaultSourceText = Config.sourceText;
+            defaultAlphabet = Config.alphabet;
+            nextKeyword = Config.firstKeyword;
             BuildLookupTable();
         }
 
@@ -44,12 +44,7 @@ namespace Kryptos4
         }
 
         public DecryptCommand GetNextCommand()
-        {
-            if (nextKeyword == "AAAAA")
-            {
-                return null;
-            }
-            
+        {            
             var command = new DecryptCommand {
                 sourceText = defaultSourceText,
                 alphabet = defaultAlphabet,

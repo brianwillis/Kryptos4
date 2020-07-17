@@ -9,15 +9,15 @@ namespace Kryptos4
             var factory = new DecryptCommandFactory();
             var handler = new DecryptCommandHandler();
             var scorer = new SolutionScorer();
-            var fileWriter = new SolutionFileWriter(); 
+            var fileWriter = new SolutionFileWriter();
             
             var command = factory.GetNextCommand();
-            while (command != null) 
+            while (command.keyword != Config.lastKeyword) 
             {
                 var result = handler.Solve(command);
                 scorer.Score(result);
 
-                if (result.score >= 30)
+                if (result.score >= Config.minimumScoreToReport)
                 {
                     fileWriter.Write(command, result);
 
