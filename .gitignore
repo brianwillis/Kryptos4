@@ -364,3 +364,6 @@ FodyWeavers.xsd
 # Visual Studio Code
 .vscode
 *.code-workspace
+
+# Output of the application
+output/
