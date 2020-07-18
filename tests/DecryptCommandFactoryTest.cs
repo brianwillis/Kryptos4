@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 
 namespace Kryptos4
@@ -7,7 +8,7 @@ namespace Kryptos4
         [Fact]
         public void GetNextCommand_WhenRequested26Times_KeywordIncrementsCorrectly()
         {
-            var factory = new DecryptCommandFactory(string.Empty, string.Empty, "A");
+            var factory = new DecryptCommandFactory(new List<string>() { string.Empty }, string.Empty, "A");
             var command = new DecryptCommand();
             
             for (var i = 0; i <= 26; i++)

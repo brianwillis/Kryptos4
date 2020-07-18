@@ -1,18 +1,19 @@
 using System;
+using System.Collections.Generic;
 
 namespace Kryptos4
 {
     class DecryptCommandFactory
     {
-
-        private string defaultSourceText;
+        private List<String> defaultSourceTexts;
+        private int nextSourceTextIndex = 0;
         private string defaultAlphabet;
         private string nextKeyword;
         private char[,] defaultLookupTable;
         
-        public DecryptCommandFactory(string defaultSourceText, string defaultAlphabet, string nextKeyword)
+        public DecryptCommandFactory(List<string> defaultSourceTexts, string defaultAlphabet, string nextKeyword)
         {
-            this.defaultSourceText = defaultSourceText;
+            this.defaultSourceTexts = defaultSourceTexts;
             this.defaultAlphabet = defaultAlphabet;
             this.nextKeyword = nextKeyword;
             BuildLookupTable();
@@ -20,7 +21,7 @@ namespace Kryptos4
 
         public DecryptCommandFactory()
         {
-            defaultSourceText = Config.sourceText;
+            defaultSourceTexts = Config.sourceTexts;
             defaultAlphabet = Config.alphabet;
             nextKeyword = Config.firstKeyword;
             BuildLookupTable();
@@ -46,13 +47,17 @@ namespace Kryptos4
         public DecryptCommand GetNextCommand()
         {            
             var command = new DecryptCommand {
-                sourceText = defaultSourceText,
+                sourceText = defaultSourceTexts[nextSourceTextIndex],
                 alphabet = defaultAlphabet,
                 keyword = nextKeyword,
                 lookupTable = defaultLookupTable
             };
 
-            nextKeyword = GenerateNextKeyword(nextKeyword);
+            nextSourceTextIndex++;
+            if (nextSourceTextIndex == defaultSourceTexts.Count) {
+                nextSourceTextIndex = 0;
+                nextKeyword = GenerateNextKeyword(nextKeyword);
+            }            
 
             return command;
         }

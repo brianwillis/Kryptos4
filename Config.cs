@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+
 namespace Kryptos4
 {
     static class Config
     {
         //The folder to save solutions to.
-        public const string outputFolder = "";
+        public const string outputFolder = "/Users/Brian/Development/Kryptos4/output";
 
         //Potential solutions receive a score from 0 (bad) to 100 (perfect).
         //We only report on solutions >= minimumScoreToReport.
@@ -17,7 +19,12 @@ namespace Kryptos4
         public const string lastKeyword = "AAAAA";
 
         //The encrypted text that we're trying to decrypt. By defualt set to the text of the Kryptos 4 puzzle.
-        public const string sourceText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR";
+        public static List<string> sourceTexts = new List<string>()
+        {
+            "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR", //Kryptos 4
+            "RACKEUAUHUKGIDCJTXZKDGWKPFZMTTVPYNBFNIWAIDULKJTAWZZKESSQJSQTWTOSSKGNRPQQVRLFWBBFILOSBLUHGOXOURKBO", //Kryptos 4 in reverse
+            "RKBOOSSKGNRPQQVRLFWBBFILOSBLUHGOXOUPYNBFNIWAIDULKJTAWZZKESSQJSQTWTRACKEUAUHUKGIDCJTXZKDGWKPFZMTTV"  //Kryptos 4 reversed line-by-line
+        };
 
         //The alphabet that we use to build the Vigenère cypher lookup table.
         //Must be exactly 26 charachers long and contain every letter of the alphabet exactly once.
