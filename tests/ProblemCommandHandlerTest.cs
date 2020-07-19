@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Kryptos4
 {
-    public class DecryptCommandHandlerTest
+    public class ProblemCommandHandlerTest
     {
         [Fact]
         public void Solve_WhenSolvingKryptos1_SolutionIsCorrect()

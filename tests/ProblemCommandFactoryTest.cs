@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Kryptos4
 {
-    public class DecryptCommandFactoryTest
+    public class ProblemCommandFactoryTest
     {
         [Fact]
         public void GetNextCommand_WhenRequested26Times_KeywordIncrementsCorrectly()
