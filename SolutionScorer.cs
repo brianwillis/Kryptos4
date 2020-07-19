@@ -3,15 +3,8 @@ namespace Kryptos4
     class SolutionScorer
     {
         public void Score(ProblemCommand problem, Solution solution) {
-            solution.score = 0;
-
-            //100 points for having all hits present and in the correct place.
-            if (AllHintsPresentInCorrectPlace(problem, solution))
-            {
-                solution.score = 100;
-                solution.narrative.Add("Perfect solution.");
-                return;
-            }
+            var allHintsPresentInCorrectPlace = true;
+            solution.score = 0;            
 
             //1/n points each for having a clue present in the correct place.
             //1/n+1 points each for having a clue present in the wrong place.
@@ -24,22 +17,21 @@ namespace Kryptos4
                 }
                 else if (HintIsPresentInWrongPlace(hint, solution.decryptedText))
                 {
+                    allHintsPresentInCorrectPlace = false;
                     solution.score += (100 / (problem.solutionHints.Count + 1));
                     solution.narrative.Add($"{hint.hintText} is present in the wrong place.");
-                }                
-            }
-        }
-
-        private bool AllHintsPresentInCorrectPlace(ProblemCommand problem, Solution solution)
-        {
-            foreach (var hint in problem.solutionHints)
-            {
-                if (!HintIsPresentInCorrectPlace(hint, solution.decryptedText))
+                }
+                else
                 {
-                    return false;
+                    allHintsPresentInCorrectPlace = false;
                 }
             }
-            return true;       
+
+            if (allHintsPresentInCorrectPlace) 
+            {
+                solution.score = 100;
+                solution.narrative.Add("Perfect solution.");
+            }
         }
 
         private bool HintIsPresentInCorrectPlace(SolutionHint hint, string decryptedText)
