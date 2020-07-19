@@ -5,7 +5,7 @@ namespace Kryptos4
     static class Config
     {
         //The folder to save solutions to.
-        public const string outputFolder = "/Users/Brian/Development/Kryptos4/output";
+        public const string outputFolder = "";
 
         //Potential solutions receive a score from 0 (bad) to 100 (perfect).
         //We only report on solutions >= minimumScoreToReport.
@@ -16,7 +16,7 @@ namespace Kryptos4
         public const string firstKeyword = "A";
 
         //We stop checking for solutions when we hit lastKeyword.
-        public const string lastKeyword = "AAAAA";
+        public const string lastKeyword = "ZZZZZZ";
 
         //The encrypted text that we're trying to decrypt. By defualt set to variations of the Kryptos 4 puzzle.
         public static List<ProblemDefinition> problemDefinitions = new List<ProblemDefinition>()
