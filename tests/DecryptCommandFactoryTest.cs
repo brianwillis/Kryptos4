@@ -8,8 +8,8 @@ namespace Kryptos4
         [Fact]
         public void GetNextCommand_WhenRequested26Times_KeywordIncrementsCorrectly()
         {
-            var factory = new DecryptCommandFactory(new List<string>() { string.Empty }, string.Empty, "A");
-            var command = new DecryptCommand();
+            var factory = new ProblemCommandFactory(new List<ProblemDefinition>() { new ProblemDefinition() }, string.Empty, "A");
+            var command = new ProblemCommand();
             
             for (var i = 0; i <= 26; i++)
             {

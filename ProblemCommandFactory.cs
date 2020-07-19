@@ -3,25 +3,25 @@ using System.Collections.Generic;
 
 namespace Kryptos4
 {
-    class DecryptCommandFactory
+    class ProblemCommandFactory
     {
-        private List<String> defaultSourceTexts;
-        private int nextSourceTextIndex = 0;
+        private List<ProblemDefinition> defaultProblemDefinitions;
+        private int nextProblemDefinitionIndex = 0;
         private string defaultAlphabet;
         private string nextKeyword;
         private char[,] defaultLookupTable;
         
-        public DecryptCommandFactory(List<string> defaultSourceTexts, string defaultAlphabet, string nextKeyword)
+        public ProblemCommandFactory(List<ProblemDefinition> defaultProblemDefinitions, string defaultAlphabet, string nextKeyword)
         {
-            this.defaultSourceTexts = defaultSourceTexts;
+            this.defaultProblemDefinitions = defaultProblemDefinitions;
             this.defaultAlphabet = defaultAlphabet;
             this.nextKeyword = nextKeyword;
             BuildLookupTable();
         }
 
-        public DecryptCommandFactory()
+        public ProblemCommandFactory()
         {
-            defaultSourceTexts = Config.sourceTexts;
+            defaultProblemDefinitions = Config.problemDefinitions;
             defaultAlphabet = Config.alphabet;
             nextKeyword = Config.firstKeyword;
             BuildLookupTable();
@@ -44,18 +44,19 @@ namespace Kryptos4
             }
         }
 
-        public DecryptCommand GetNextCommand()
+        public ProblemCommand GetNextCommand()
         {            
-            var command = new DecryptCommand {
-                sourceText = defaultSourceTexts[nextSourceTextIndex],
-                alphabet = defaultAlphabet,
+            var command = new ProblemCommand {
+                encryptedText = defaultProblemDefinitions[nextProblemDefinitionIndex].encryptedText,
                 keyword = nextKeyword,
-                lookupTable = defaultLookupTable
+                alphabet = defaultAlphabet,                
+                lookupTable = defaultLookupTable,
+                solutionHints = defaultProblemDefinitions[nextProblemDefinitionIndex].solutionHints
             };
 
-            nextSourceTextIndex++;
-            if (nextSourceTextIndex == defaultSourceTexts.Count) {
-                nextSourceTextIndex = 0;
+            nextProblemDefinitionIndex++;
+            if (nextProblemDefinitionIndex == defaultProblemDefinitions.Count) {
+                nextProblemDefinitionIndex = 0;
                 nextKeyword = GenerateNextKeyword(nextKeyword);
             }            
 

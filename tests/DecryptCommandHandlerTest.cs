@@ -8,38 +8,46 @@ namespace Kryptos4
         [Fact]
         public void Solve_WhenSolvingKryptos1_SolutionIsCorrect()
         {
-            var factory = new DecryptCommandFactory(
-                new List<string> {"EMUFPHZLRFAXYUSDJKZLDKRNSHGNFIVJYQTQUXQBQVYUVLLTREVJYQTMKYRDMFD"},
+            var factory = new ProblemCommandFactory(
+                new List<ProblemDefinition> {
+                    new ProblemDefinition {
+                        encryptedText = "EMUFPHZLRFAXYUSDJKZLDKRNSHGNFIVJYQTQUXQBQVYUVLLTREVJYQTMKYRDMFD"
+                    }
+                },
                 "KRYPTOSABCDEFGHIJLMNQUVWXZ",
                 "PALIMPSEST"
             );
             var command = factory.GetNextCommand();
-            var handler = new DecryptCommandHandler();
+            var handler = new ProblemCommandHandler();
             
             var result = handler.Solve(command);
 
             Assert.Equal(
                 "BETWEENSUBTLESHADINGANDTHEABSENCEOFLIGHTLIESTHENUANCEOFIQLUSION",
-                result.solution
+                result.decryptedText
             );
         }
 
         [Fact]
         public void Solve_WhenSolvingKryptos2_SolutionIsCorrect()
         {
-            var factory = new DecryptCommandFactory(
-                new List<string> {"VFPJUDEEHZWETZYVGWHKKQETGFQJNCEGGWHKK?DQMCPFQZDQMMIAGPFXHQRLGTIMVMZJANQLVKQEDAGDVFRPJUNGEUNAQZGZLECGYUXUEENJTBJLBQCRTBJDFHRRYIZETKZEMVDUFKSJHKFWHKUWQLSZFTIHHDDDUVH?DWKBFUFPWNTDFIYCUQZEREEVLDKFEZMOQQJLTTUGSYQPFEUNLAVIDXFLGGTEZ?FKZBSFDQVGOGIPUFXHHDRKFFHQNTGPUAECNUVPDJMQCLQUMUNEDFQELZZVRRGKFFVOEEXBDMVPNFQXEZLGREDNQFMPNZGLFLPMRJQYALMGNUVPDXVKPDQUMEBEDMHDAFMJGZNUPLGEWJLLAETG"},
+            var factory = new ProblemCommandFactory(
+                new List<ProblemDefinition> {
+                    new ProblemDefinition {
+                        encryptedText = "VFPJUDEEHZWETZYVGWHKKQETGFQJNCEGGWHKK?DQMCPFQZDQMMIAGPFXHQRLGTIMVMZJANQLVKQEDAGDVFRPJUNGEUNAQZGZLECGYUXUEENJTBJLBQCRTBJDFHRRYIZETKZEMVDUFKSJHKFWHKUWQLSZFTIHHDDDUVH?DWKBFUFPWNTDFIYCUQZEREEVLDKFEZMOQQJLTTUGSYQPFEUNLAVIDXFLGGTEZ?FKZBSFDQVGOGIPUFXHHDRKFFHQNTGPUAECNUVPDJMQCLQUMUNEDFQELZZVRRGKFFVOEEXBDMVPNFQXEZLGREDNQFMPNZGLFLPMRJQYALMGNUVPDXVKPDQUMEBEDMHDAFMJGZNUPLGEWJLLAETG"
+                    }
+                },
                 "KRYPTOSABCDEFGHIJLMNQUVWXZ",
                 "ABSCISSA"
             );
             var command = factory.GetNextCommand();
-            var handler = new DecryptCommandHandler();
+            var handler = new ProblemCommandHandler();
             
             var result = handler.Solve(command);
             
             Assert.Equal(
                 "ITWASTOTALLYINVISIBLEHOWSTHATPOSSIBLE?THEYUSEDTHEEARTHSMAGNETICFIELDXTHEINFORMATIONWASGATHEREDANDTRANSMITTEDUNDERGRUUNDTOANUNKNOWNLOCATIONXDOESLANGLEYKNOWABOUTTHIS?THEYSHOULDITSBURIEDOUTTHERESOMEWHEREXWHOKNOWSTHEEXACTLOCATION?ONLYWWTHISWASHISLASTMESSAGEXTHIRTYEIGHTDEGREESFIFTYSEVENMINUTESSIXPOINTFIVESECONDSNORTHSEVENTYSEVENDEGREESEIGHTMINUTESFORTYFOURSECONDSWESTIDBYROWS",
-                result.solution
+                result.decryptedText
             );
         }
     }

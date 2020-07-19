@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 
 namespace Kryptos4
@@ -6,122 +7,116 @@ namespace Kryptos4
     {
         [Fact]
         public void Score_WhenGivenPerfectSolution_ScoreEqualsOneHundred() {
-            var result = new DecryptCommandResult {
-                solution = "                         NORTHEAST                             BERLINCLOCK                       "
+            var problem = GetDefaultProblem();
+            var solution = new Solution 
+            {
+                decryptedText = "                         NORTHEAST                             BERLINCLOCK                       "
             };
             var scorer = new SolutionScorer();
 
-            scorer.Score(result);
+            scorer.Score(problem, solution);
 
-            Assert.Equal(100, result.score);
+            Assert.Equal(100, solution.score);
         }
 
         [Fact]
         public void Score_WhenGivenNortheastInRightPlace_ScoreEqualsThirty() {
-            var result = new DecryptCommandResult {
-                solution = "                         NORTHEAST                                                               "
+            var problem = GetDefaultProblem();
+            var solution = new Solution 
+            {
+                decryptedText = "                         NORTHEAST                                                               "
             };
             var scorer = new SolutionScorer();
 
-            scorer.Score(result);
+            scorer.Score(problem, solution);
 
-            Assert.Equal(30, result.score);
+            Assert.Equal(33, solution.score);
         }
 
         [Fact]
         public void Score_WhenGivenBerlinInRightPlace_ScoreEqualsThiry() {
-            var result = new DecryptCommandResult {
-                solution = "                                                               BERLIN                            "
+            var problem = GetDefaultProblem();
+            var solution = new Solution {
+                decryptedText = "                                                               BERLIN                            "
             };
             var scorer = new SolutionScorer();
 
-            scorer.Score(result);
+            scorer.Score(problem, solution);
 
-            Assert.Equal(30, result.score);
+            Assert.Equal(33, solution.score);
         }
 
         [Fact]
         public void Score_WhenGivenClockInRightPlace_ScoreEqualsThiry() {
-            var result = new DecryptCommandResult {
-                solution = "                                                                     CLOCK                       "
+            var problem = GetDefaultProblem();
+            var solution = new Solution {
+                decryptedText = "                                                                     CLOCK                       "
             };
             var scorer = new SolutionScorer();
 
-            scorer.Score(result);
+            scorer.Score(problem, solution);
 
-            Assert.Equal(30, result.score);
+            Assert.Equal(33, solution.score);
         }
 
         [Fact]
         public void Score_WhenGivenNortheastInWrongPlace_ScoreEqualsTwenty() {
-            var result = new DecryptCommandResult {
-                solution = "NORTHEAST                                                                                        "
+            var problem = GetDefaultProblem();
+            var solution = new Solution {
+                decryptedText = "NORTHEAST                                                                                        "
             };
             var scorer = new SolutionScorer();
 
-            scorer.Score(result);
+            scorer.Score(problem, solution);
 
-            Assert.Equal(20, result.score);
+            Assert.Equal(25, solution.score);
         }
 
         [Fact]
         public void Score_WhenGivenBerlinInWrongPlace_ScoreEqualsTwenty() {
-            var result = new DecryptCommandResult {
-                solution = "BERLIN                                                                                           "
+            var problem = GetDefaultProblem();
+            var solution = new Solution {
+                decryptedText = "BERLIN                                                                                           "
             };
             var scorer = new SolutionScorer();
 
-            scorer.Score(result);
+            scorer.Score(problem, solution);
 
-            Assert.Equal(20, result.score);
+            Assert.Equal(25, solution.score);
         }
 
         [Fact]
         public void Score_WhenGivenClockInWrongPlace_ScoreEqualsTwenty() {
-            var result = new DecryptCommandResult {
-                solution = "CLOCK                                                                                            "
+            var problem = GetDefaultProblem();
+            var solution = new Solution {
+                decryptedText = "CLOCK                                                                                            "
             };
             var scorer = new SolutionScorer();
 
-            scorer.Score(result);
+            scorer.Score(problem, solution);
 
-            Assert.Equal(20, result.score);
+            Assert.Equal(25, solution.score);
         }
 
-        [Fact]
-        public void Score_WhenGivenNortheastScattered_ScoreEqualsTen() {
-            var result = new DecryptCommandResult {
-                solution = " N O R T H E A S T                                                                               "
+        private ProblemCommand GetDefaultProblem()
+        {
+            return new ProblemCommand {
+                encryptedText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR",
+                solutionHints = new List<SolutionHint> {
+                    new SolutionHint {
+                        hintText = "NORTHEAST",
+                        indexWhereHintBeginsInEncryptedText = 25
+                    },
+                    new SolutionHint {
+                        hintText = "BERLIN",
+                        indexWhereHintBeginsInEncryptedText = 63
+                    },
+                    new SolutionHint {
+                        hintText = "CLOCK",
+                        indexWhereHintBeginsInEncryptedText = 69
+                    }
+                }
             };
-            var scorer = new SolutionScorer();
-
-            scorer.Score(result);
-
-            Assert.Equal(10, result.score);
-        }
-
-        [Fact]
-        public void Score_WhenGivenBerlinScattered_ScoreEqualsTen() {
-            var result = new DecryptCommandResult {
-                solution = " B E R L I N                                                                                     "
-            };
-            var scorer = new SolutionScorer();
-
-            scorer.Score(result);
-
-            Assert.Equal(10, result.score);
-        }
-
-        [Fact]
-        public void Score_WhenGivenClockScattered_ScoreEqualsTen() {
-            var result = new DecryptCommandResult {
-                solution = " C L O C K                                                                                       "
-            };
-            var scorer = new SolutionScorer();
-
-            scorer.Score(result);
-
-            Assert.Equal(10, result.score);
         }
     }
 }

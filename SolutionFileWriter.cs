@@ -38,21 +38,21 @@ namespace Kryptos4
             }
         }
 
-        public void Write(DecryptCommand command, DecryptCommandResult result)
+        public void Write(ProblemCommand problem, Solution solution)
         {
             try 
             {
-                var fileName = $"{result.score} - {command.keyword}";
+                var fileName = $"{solution.score} - {problem.keyword}";
                 
                 var report =
-                    $"Keyword: {command.keyword}\n" +
-                    $"Alphabet: {command.alphabet}\n" +
+                    $"Keyword: {problem.keyword}\n" +
+                    $"Alphabet: {problem.alphabet}\n" +
                     "Lookup table:\n";
                 
-                for (var i = 0; i < command.alphabet.Length; i++)
+                for (var i = 0; i < problem.alphabet.Length; i++)
                 {
-                    for (var j = 0; j < command.alphabet.Length; j++) {
-                        report += command.lookupTable[i,j];
+                    for (var j = 0; j < problem.alphabet.Length; j++) {
+                        report += problem.lookupTable[i,j];
                     }
                     report += '\n';
                 }
@@ -60,23 +60,23 @@ namespace Kryptos4
                 report += '\n';
 
                 report += 
-                    $"Source text: {command.sourceText}\n" +
-                    $"Result text: {result.solution}\n";
+                    $"Source text: {problem.encryptedText}\n" +
+                    $"Result text: {solution.decryptedText}\n";
 
                 report += '\n';
 
                 report += 
-                    $"Score: {result.score}\n" +
+                    $"Score: {solution.score}\n" +
                     "Narrative: ";
                 
-                if (result.narrative.Count == 1)
+                if (solution.narrative.Count == 1)
                 {
-                    report += result.narrative[0] + '\n';
+                    report += solution.narrative[0] + '\n';
                 }
                 else 
                 {
                     report += "\n";
-                    foreach (var narration in result.narrative)
+                    foreach (var narration in solution.narrative)
                     {
                         report += $"- {narration}\n";
                     }

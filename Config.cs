@@ -18,12 +18,46 @@ namespace Kryptos4
         //We stop checking for solutions when we hit lastKeyword.
         public const string lastKeyword = "AAAAA";
 
-        //The encrypted text that we're trying to decrypt. By defualt set to the text of the Kryptos 4 puzzle.
-        public static List<string> sourceTexts = new List<string>()
+        //The encrypted text that we're trying to decrypt. By defualt set to variations of the Kryptos 4 puzzle.
+        public static List<ProblemDefinition> problemDefinitions = new List<ProblemDefinition>()
         {
-            "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR", //Kryptos 4
-            "RACKEUAUHUKGIDCJTXZKDGWKPFZMTTVPYNBFNIWAIDULKJTAWZZKESSQJSQTWTOSSKGNRPQQVRLFWBBFILOSBLUHGOXOURKBO", //Kryptos 4 in reverse
-            "RKBOOSSKGNRPQQVRLFWBBFILOSBLUHGOXOUPYNBFNIWAIDULKJTAWZZKESSQJSQTWTRACKEUAUHUKGIDCJTXZKDGWKPFZMTTV"  //Kryptos 4 reversed line-by-line
+            //Kryptos 4
+            new ProblemDefinition {
+                encryptedText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR",
+                solutionHints = new List<SolutionHint> {
+                    new SolutionHint {
+                        hintText = "NORTHEAST",
+                        indexWhereHintBeginsInEncryptedText = 25
+                    },
+                    new SolutionHint {
+                        hintText = "BERLIN",
+                        indexWhereHintBeginsInEncryptedText = 63
+                    },
+                    new SolutionHint {
+                        hintText = "CLOCK",
+                        indexWhereHintBeginsInEncryptedText = 69
+                    }
+                }
+            },
+
+            //Kryptos 4 in reverse
+            new ProblemDefinition {
+                encryptedText = "RACKEUAUHUKGIDCJTXZKDGWKPFZMTTVPYNBFNIWAIDULKJTAWZZKESSQJSQTWTOSSKGNRPQQVRLFWBBFILOSBLUHGOXOURKBO",
+                solutionHints = new List<SolutionHint> {
+                    new SolutionHint {
+                        hintText = "NORTHEAST",
+                        indexWhereHintBeginsInEncryptedText = 63
+                    },
+                    new SolutionHint {
+                        hintText = "BERLIN",
+                        indexWhereHintBeginsInEncryptedText = 28
+                    },
+                    new SolutionHint {
+                        hintText = "CLOCK",
+                        indexWhereHintBeginsInEncryptedText = 23
+                    }
+                }
+            }
         };
 
         //The alphabet that we use to build the Vigenère cypher lookup table.

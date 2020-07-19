@@ -2,129 +2,54 @@ namespace Kryptos4
 {
     class SolutionScorer
     {
-        public void Score(DecryptCommandResult result) {
-            result.score = 0;
-            var northeastPresentInCorrectPlace = IsNortheastPresentInCorrectPlace(result.solution);
-            var berlinPresentInCorrectPlace = IsBerlinPresentInCorrectPlace(result.solution);
-            var clockPresentInCorrectPlace = IsClockPresentInCorrectPlace(result.solution);
+        public void Score(ProblemCommand problem, Solution solution) {
+            solution.score = 0;
 
-            //100 points for having all three clues present and in the correct place.
-            if (northeastPresentInCorrectPlace && berlinPresentInCorrectPlace && clockPresentInCorrectPlace)
+            //100 points for having all hits present and in the correct place.
+            if (AllHintsPresentInCorrectPlace(problem, solution))
             {
-                result.score = 100;
-                result.narrative.Add("Perfect solution.");
+                solution.score = 100;
+                solution.narrative.Add("Perfect solution.");
                 return;
             }
 
-            //30 points each for having a clue present in the correct place.
-            //20 points each for having a clue present in the wrong place.
-            //10 points for having the characters that make up a clue scattered somewhere in the solution.
-            if (northeastPresentInCorrectPlace)
+            //1/n points each for having a clue present in the correct place.
+            //1/n+1 points each for having a clue present in the wrong place.
+            foreach (var hint in problem.solutionHints)
             {
-                result.score += 30;
-                result.narrative.Add("Northeast is present in the correct place.");
-            }
-            else if (IsNortheastPresentInWrongPlace(result.solution))
-            {
-                result.score += 20;
-                result.narrative.Add("Northeast is present in the wrong place.");
-            }
-            else if (IsNortheastScatteredInTheSolution(result.solution))
-            {
-                result.score += 10;
-                result.narrative.Add("Northeast is scattered in the solution.");
-            }
-
-            if (berlinPresentInCorrectPlace)
-            {
-                result.score += 30;
-                result.narrative.Add("Berlin is present in the correct place.");
-            }
-            else if (IsBerlinPresentInWrongPlace(result.solution))
-            {
-                result.score += 20;
-                result.narrative.Add("Berlin is present in the wrong place.");
-            }
-            else if (IsBerlinScatteredInTheSolution(result.solution))
-            {
-                result.score += 10;
-                result.narrative.Add("Berlin is scattered in the solution.");
-            }
-
-            if (clockPresentInCorrectPlace)
-            {
-                result.score += 30;
-                result.narrative.Add("Clock is present in the correct place.");
-            }
-            else if (IsClockPresentInWrongPlace(result.solution))
-            {
-                result.score += 20;
-                result.narrative.Add("Clock is present in the wrong place.");
-            }
-            else if (IsClockScatteredInTheSolution(result.solution))
-            {
-                result.score += 10;
-                result.narrative.Add("Clock is scattered in the solution.");
+                if (HintIsPresentInCorrectPlace(hint, solution.decryptedText))
+                {
+                    solution.score += (100 / problem.solutionHints.Count);
+                    solution.narrative.Add($"{hint.hintText} is present in the correct place.");
+                }
+                else if (HintIsPresentInWrongPlace(hint, solution.decryptedText))
+                {
+                    solution.score += (100 / (problem.solutionHints.Count + 1));
+                    solution.narrative.Add($"{hint.hintText} is present in the wrong place.");
+                }                
             }
         }
 
-        private bool IsNortheastPresentInCorrectPlace(string solution)
+        private bool AllHintsPresentInCorrectPlace(ProblemCommand problem, Solution solution)
         {
-            return solution.Substring(25, 9) == "NORTHEAST";
-        }
-
-        private bool IsBerlinPresentInCorrectPlace(string solution)
-        {
-            return solution.Substring(63, 6) == "BERLIN";
-        }
-
-        private bool IsClockPresentInCorrectPlace(string solution)
-        {
-            return solution.Substring(69, 5) == "CLOCK";
-        }
-
-        private bool IsNortheastPresentInWrongPlace(string solution)
-        {
-            return !IsNortheastPresentInCorrectPlace(solution) && solution.Contains("NORTHEAST");
-        }
-
-        private bool IsBerlinPresentInWrongPlace(string solution)
-        {
-            return !IsBerlinPresentInCorrectPlace(solution) && solution.Contains("BERLIN");
-        }
-
-        private bool IsClockPresentInWrongPlace(string solution)
-        {
-            return !IsClockPresentInCorrectPlace(solution) && solution.Contains("CLOCK");
-        }
-
-        private bool IsNortheastScatteredInTheSolution(string solution)
-        {
-            return IsStringScatteredInSolution("NORTHEAST", solution);
-        }
-
-        private bool IsBerlinScatteredInTheSolution(string solution)
-        {
-            return IsStringScatteredInSolution("BERLIN", solution);
-        }
-
-        private bool IsClockScatteredInTheSolution(string solution)
-        {
-            return IsStringScatteredInSolution("CLOCK", solution);
-        }
-
-        private bool IsStringScatteredInSolution(string search, string solution)
-        {
-            var chars = search.ToCharArray();
-            foreach (var chr in chars)
+            foreach (var hint in problem.solutionHints)
             {
-                if (!solution.Contains(chr))
+                if (!HintIsPresentInCorrectPlace(hint, solution.decryptedText))
                 {
                     return false;
                 }
-                solution.Remove(solution.IndexOf(chr), 1);
             }
-            return true;
+            return true;       
+        }
+
+        private bool HintIsPresentInCorrectPlace(SolutionHint hint, string decryptedText)
+        {
+            return decryptedText.Substring(hint.indexWhereHintBeginsInEncryptedText, hint.hintText.Length) == hint.hintText;
+        }
+
+        private bool HintIsPresentInWrongPlace(SolutionHint hint, string decryptedText)
+        {
+            return decryptedText.Contains(hint.hintText);
         }
     }
 }

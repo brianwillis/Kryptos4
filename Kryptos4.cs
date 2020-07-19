@@ -6,8 +6,8 @@ namespace Kryptos4
     {
         static void Main(string[] args)
         {
-            var factory = new DecryptCommandFactory();
-            var handler = new DecryptCommandHandler();
+            var factory = new ProblemCommandFactory();
+            var handler = new ProblemCommandHandler();
             var scorer = new SolutionScorer();
             var fileWriter = new SolutionFileWriter();
             
@@ -15,7 +15,7 @@ namespace Kryptos4
             while (command.keyword != Config.lastKeyword) 
             {
                 var result = handler.Solve(command);
-                scorer.Score(result);
+                scorer.Score(command, result);
 
                 if (result.score >= Config.minimumScoreToReport)
                 {
