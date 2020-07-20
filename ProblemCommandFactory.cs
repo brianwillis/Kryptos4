@@ -35,7 +35,8 @@ namespace Kryptos4
                 for (var j = 0; j < defaultAlphabet.Length; j++)
                 {
                     var index = i + j;
-                    if (index >= defaultAlphabet.Length) {
+                    if (index >= defaultAlphabet.Length)
+                    {
                         index -= defaultAlphabet.Length;
                     }
                     var letter = defaultAlphabet.Substring(index, 1).ToCharArray()[0];
@@ -46,7 +47,8 @@ namespace Kryptos4
 
         public ProblemCommand GetNextCommand()
         {            
-            var command = new ProblemCommand {
+            var command = new ProblemCommand
+            {
                 encryptedText = defaultProblemDefinitions[nextProblemDefinitionIndex].encryptedText,
                 keyword = nextKeyword,
                 alphabet = defaultAlphabet,                
@@ -55,7 +57,8 @@ namespace Kryptos4
             };
 
             nextProblemDefinitionIndex++;
-            if (nextProblemDefinitionIndex == defaultProblemDefinitions.Count) {
+            if (nextProblemDefinitionIndex == defaultProblemDefinitions.Count)
+            {
                 nextProblemDefinitionIndex = 0;
                 nextKeyword = GenerateNextKeyword(nextKeyword);
             }            
@@ -65,7 +68,8 @@ namespace Kryptos4
 
         private string GenerateNextKeyword(string oldKeyword)
         {
-            if (oldKeyword == string.Empty) {
+            if (oldKeyword == string.Empty)
+            {
                 return "A";
             }
 

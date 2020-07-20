@@ -1,3 +1,4 @@
+using System;
 namespace Kryptos4
 {
     class ProblemCommandHandler
@@ -16,23 +17,23 @@ namespace Kryptos4
                     continue;
                 }
 
-                var keywordLetter = problem.keyword.Substring(keywordIndex, 1).ToCharArray()[0];
+                var keywordLetter = Convert.ToChar(problem.keyword.Substring(keywordIndex, 1));
+                
                 var row = 0;
-
-                for (var i = 0; i < problem.alphabet.Length; i++)
+                for (row = 0; row < problem.alphabet.Length; row++)
                 {
-                    if (problem.lookupTable[i, 0] == keywordLetter)
+                    if (problem.lookupTable[row, 0] == keywordLetter)
                     {
-                        row = i;
                         break;
                     }
                 }
-
-                for (var i = 0; i < problem.alphabet.Length; i++) 
+                
+                var col = 0;
+                for (col = 0; col < problem.alphabet.Length; col++) 
                 {
-                    if (problem.lookupTable[row, i] == chr)
+                    if (problem.lookupTable[row, col] == chr)
                     {
-                        solution.decryptedText += problem.lookupTable[0, i];
+                        solution.decryptedText += problem.lookupTable[0, col];
                         break;
                     }
                 }

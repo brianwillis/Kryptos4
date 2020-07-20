@@ -51,7 +51,8 @@ namespace Kryptos4
                 
                 for (var i = 0; i < problem.alphabet.Length; i++)
                 {
-                    for (var j = 0; j < problem.alphabet.Length; j++) {
+                    for (var j = 0; j < problem.alphabet.Length; j++)
+                    {
                         report += problem.lookupTable[i,j];
                     }
                     report += '\n';
