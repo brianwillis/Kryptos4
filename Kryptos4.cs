@@ -24,6 +24,14 @@ namespace Kryptos4
             var handler = new ProblemCommandHandler();
             var scorer = new SolutionScorer();
             var fileWriter = new SolutionFileWriter();
+
+            double totalCommands = 0;
+            for (int i = 1; i <= Config.lastKeyword.Length; i++)
+            {
+                totalCommands += Math.Pow(26, i) * Config.problemDefinitions.Count;
+            }
+            var commandsChecked = 0;
+            var percentComplete = 0;
             
             var command = factory.GetNextCommand();
             while (command.keyword != Config.lastKeyword) 
@@ -39,6 +47,17 @@ namespace Kryptos4
                     {
                         //We've found the correct solution, so we can stop.
                         return;
+                    }
+                }
+
+                commandsChecked++;
+                if (percentComplete != Convert.ToInt32(commandsChecked / totalCommands * 100)) 
+                {
+                    percentComplete = Convert.ToInt32(commandsChecked / totalCommands * 100);
+                    Console.WriteLine($"{percentComplete}% complete at {DateTime.Now}");
+                    if (percentComplete == 100)
+                    {
+                        Console.WriteLine(string.Empty);
                     }
                 }
 
