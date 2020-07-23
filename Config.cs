@@ -7,16 +7,13 @@ namespace Kryptos4
         //The folder to save solutions to.
         public const string outputFolder = "";
 
+        //The location of your system's dictonary file. On most unix-like systems it's /usr/share/dict/words.
+        //There's also a copy in this git repo if you don't have your own.
+        public const string dictionaryFile = "/usr/share/dict/words";
+
         //Potential solutions receive a score from 0 (bad) to 100 (perfect).
         //We only report on solutions >= minimumScoreToReport.
         public const int minimumScoreToReport = 30;
-
-        //Keywords are generated from A -> Z, then from AA -> ZZ, and so on.
-        //The keyword that we start with is set by firstKeyword. Set this to something higher than "A" (e.g. "AAAAA") to skip over shorter keywords.
-        public const string firstKeyword = "A";
-
-        //We stop checking for solutions when we hit lastKeyword.
-        public const string lastKeyword = "ZZZZZ";
 
         //The encrypted text that we're trying to decrypt. By defualt set to variations of the Kryptos 4 puzzle.
         public static List<ProblemDefinition> problemDefinitions = new List<ProblemDefinition>()
@@ -39,28 +36,6 @@ namespace Kryptos4
                     {
                         hintText = "CLOCK",
                         indexWhereHintBeginsInEncryptedText = 69
-                    }
-                }
-            },
-
-            //Kryptos 4 in reverse
-            new ProblemDefinition {
-                encryptedText = "RACKEUAUHUKGIDCJTXZKDGWKPFZMTTVPYNBFNIWAIDULKJTAWZZKESSQJSQTWTOSSKGNRPQQVRLFWBBFILOSBLUHGOXOURKBO",
-                solutionHints = new List<SolutionHint> {
-                    new SolutionHint
-                    {
-                        hintText = "NORTHEAST",
-                        indexWhereHintBeginsInEncryptedText = 63
-                    },
-                    new SolutionHint
-                    {
-                        hintText = "BERLIN",
-                        indexWhereHintBeginsInEncryptedText = 28
-                    },
-                    new SolutionHint
-                    {
-                        hintText = "CLOCK",
-                        indexWhereHintBeginsInEncryptedText = 23
                     }
                 }
             }
