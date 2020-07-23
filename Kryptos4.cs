@@ -7,33 +7,18 @@ namespace Kryptos4
     {
         static void Main(string[] args)
         {
-            BuildLookupTable();
+            Config.BuildLookupTable();
+
             var watch = new Stopwatch();
             var start = DateTime.Now;
             watch.Start();
             Solve();
             watch.Stop();
             var finish = DateTime.Now;
+            
             Console.WriteLine($"Started at: {start}");
             Console.WriteLine($"Finished at: {finish}");
             Console.WriteLine($"Elapsed time: {watch.Elapsed.TotalSeconds:F0} seconds");           
-        }
-
-        private static void BuildLookupTable()
-        {
-            for (var i = 0; i < Config.alphabet.Length; i++)
-            {
-                for (var j = 0; j < Config.alphabet.Length; j++)
-                {
-                    var index = i + j;
-                    if (index >= Config.alphabet.Length)
-                    {
-                        index -= Config.alphabet.Length;
-                    }
-                    var letter = Config.alphabet.Substring(index, 1).ToCharArray()[0];
-                    Config.lookupTable[i,j] = letter;
-                }
-            }
         }
 
         private static void Solve()

@@ -8,16 +8,11 @@ namespace Kryptos4
         [Fact]
         public void Solve_WhenSolvingKryptos1_SolutionIsCorrect()
         {
-            var factory = new ProblemCommandFactory(
-                new List<ProblemDefinition> {
-                    new ProblemDefinition {
-                        encryptedText = "EMUFPHZLRFAXYUSDJKZLDKRNSHGNFIVJYQTQUXQBQVYUVLLTREVJYQTMKYRDMFD"
-                    }
-                },
-                "KRYPTOSABCDEFGHIJLMNQUVWXZ",
-                "PALIMPSEST"
-            );
-            var command = factory.GetNextCommand();
+            Config.BuildLookupTable();
+            var command = new ProblemCommand {
+                encryptedText = "EMUFPHZLRFAXYUSDJKZLDKRNSHGNFIVJYQTQUXQBQVYUVLLTREVJYQTMKYRDMFD",
+                keyword = "PALIMPSEST"
+            };
             var handler = new ProblemCommandHandler();
             
             var result = handler.Solve(command);
@@ -31,16 +26,11 @@ namespace Kryptos4
         [Fact]
         public void Solve_WhenSolvingKryptos2_SolutionIsCorrect()
         {
-            var factory = new ProblemCommandFactory(
-                new List<ProblemDefinition> {
-                    new ProblemDefinition {
-                        encryptedText = "VFPJUDEEHZWETZYVGWHKKQETGFQJNCEGGWHKK?DQMCPFQZDQMMIAGPFXHQRLGTIMVMZJANQLVKQEDAGDVFRPJUNGEUNAQZGZLECGYUXUEENJTBJLBQCRTBJDFHRRYIZETKZEMVDUFKSJHKFWHKUWQLSZFTIHHDDDUVH?DWKBFUFPWNTDFIYCUQZEREEVLDKFEZMOQQJLTTUGSYQPFEUNLAVIDXFLGGTEZ?FKZBSFDQVGOGIPUFXHHDRKFFHQNTGPUAECNUVPDJMQCLQUMUNEDFQELZZVRRGKFFVOEEXBDMVPNFQXEZLGREDNQFMPNZGLFLPMRJQYALMGNUVPDXVKPDQUMEBEDMHDAFMJGZNUPLGEWJLLAETG"
-                    }
-                },
-                "KRYPTOSABCDEFGHIJLMNQUVWXZ",
-                "ABSCISSA"
-            );
-            var command = factory.GetNextCommand();
+            Config.BuildLookupTable();
+            var command = new ProblemCommand {
+                encryptedText = "VFPJUDEEHZWETZYVGWHKKQETGFQJNCEGGWHKK?DQMCPFQZDQMMIAGPFXHQRLGTIMVMZJANQLVKQEDAGDVFRPJUNGEUNAQZGZLECGYUXUEENJTBJLBQCRTBJDFHRRYIZETKZEMVDUFKSJHKFWHKUWQLSZFTIHHDDDUVH?DWKBFUFPWNTDFIYCUQZEREEVLDKFEZMOQQJLTTUGSYQPFEUNLAVIDXFLGGTEZ?FKZBSFDQVGOGIPUFXHHDRKFFHQNTGPUAECNUVPDJMQCLQUMUNEDFQELZZVRRGKFFVOEEXBDMVPNFQXEZLGREDNQFMPNZGLFLPMRJQYALMGNUVPDXVKPDQUMEBEDMHDAFMJGZNUPLGEWJLLAETG",
+                keyword = "ABSCISSA"
+            };
             var handler = new ProblemCommandHandler();
             
             var result = handler.Solve(command);
