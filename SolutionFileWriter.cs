@@ -38,22 +38,22 @@ namespace Kryptos4
             }
         }
 
-        public void Write(ProblemCommand problem, Solution solution)
+        public void Write(ProblemCommand innerCommand, ProblemCommand outerCommand, Solution solution)
         {
             try 
             {
-                var fileName = $"{solution.score} - {problem.keyword}";
+                var fileName = $"{solution.score} - {innerCommand.keyword} {outerCommand.keyword}";
                 
                 var report =
-                    $"Keyword: {problem.keyword}\n" +
-                    $"Alphabet: {problem.alphabet}\n" +
+                    $"Keywords: {innerCommand.keyword} {outerCommand.keyword}\n" +
+                    $"Alphabet: {Config.alphabet}\n" +
                     "Lookup table:\n";
                 
-                for (var i = 0; i < problem.alphabet.Length; i++)
+                for (var i = 0; i < Config.alphabet.Length; i++)
                 {
-                    for (var j = 0; j < problem.alphabet.Length; j++)
+                    for (var j = 0; j < Config.alphabet.Length; j++)
                     {
-                        report += problem.lookupTable[i,j];
+                        report += Config.lookupTable[i,j];
                     }
                     report += '\n';
                 }
@@ -61,8 +61,9 @@ namespace Kryptos4
                 report += '\n';
 
                 report += 
-                    $"Source text: {problem.encryptedText}\n" +
-                    $"Result text: {solution.decryptedText}\n";
+                    $"Source text: {outerCommand.encryptedText}\n" +
+                    $"After decryption with {outerCommand.keyword} {innerCommand.encryptedText}\n" +
+                    $"After decryption with {innerCommand.keyword} {solution.decryptedText}\n";
 
                 report += '\n';
 

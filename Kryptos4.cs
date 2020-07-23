@@ -7,6 +7,7 @@ namespace Kryptos4
     {
         static void Main(string[] args)
         {
+            BuildLookupTable();
             var watch = new Stopwatch();
             var start = DateTime.Now;
             watch.Start();
@@ -18,31 +19,59 @@ namespace Kryptos4
             Console.WriteLine($"Elapsed time: {watch.Elapsed.TotalSeconds:F0} seconds");           
         }
 
+        private static void BuildLookupTable()
+        {
+            for (var i = 0; i < Config.alphabet.Length; i++)
+            {
+                for (var j = 0; j < Config.alphabet.Length; j++)
+                {
+                    var index = i + j;
+                    if (index >= Config.alphabet.Length)
+                    {
+                        index -= Config.alphabet.Length;
+                    }
+                    var letter = Config.alphabet.Substring(index, 1).ToCharArray()[0];
+                    Config.lookupTable[i,j] = letter;
+                }
+            }
+        }
+
         private static void Solve()
         {
-            var factory = new ProblemCommandFactory();
             var handler = new ProblemCommandHandler();
             var scorer = new SolutionScorer();
             var fileWriter = new SolutionFileWriter();
             
-            var command = factory.GetNextCommand();
-            while (command.keyword != Config.lastKeyword) 
+            var outerFactory = new ProblemCommandFactory();
+            var outerCommand = outerFactory.GetNextCommand();
+            while (outerCommand.keyword != outerFactory.GetLastKeyword())
             {
-                var result = handler.Solve(command);
-                scorer.Score(command, result);
+                Console.WriteLine(outerCommand.keyword);
 
-                if (result.score >= Config.minimumScoreToReport)
+                var outerResult = handler.Solve(outerCommand);
+
+                var innerFactory = new ProblemCommandFactory();
+                var innerCommand = innerFactory.GetNextCommand(outerResult.decryptedText);
+                while (innerCommand.keyword != innerFactory.GetLastKeyword())
                 {
-                    fileWriter.Write(command, result);
+                    var innerResult = handler.Solve(innerCommand);
 
-                    if (result.score == 100)
+                    scorer.Score(innerCommand, innerResult);
+
+                    if (innerResult.score >= Config.minimumScoreToReport)
                     {
-                        //We've found the correct solution, so we can stop.
-                        return;
-                    }
-                }
+                        fileWriter.Write(outerCommand, innerCommand, innerResult);
 
-                command = factory.GetNextCommand();
+                        if (innerResult.score == 100)
+                        {
+                            //We've found the correct solution, so we can stop.
+                            return;
+                        }
+                    }
+
+                    innerCommand = innerFactory.GetNextCommand(outerResult.decryptedText);
+                }
+                outerCommand = outerFactory.GetNextCommand();
             }
         }
     }

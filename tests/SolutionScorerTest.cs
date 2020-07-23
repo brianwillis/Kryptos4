@@ -101,21 +101,7 @@ namespace Kryptos4
         private ProblemCommand GetDefaultProblem()
         {
             return new ProblemCommand {
-                encryptedText = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR",
-                solutionHints = new List<SolutionHint> {
-                    new SolutionHint {
-                        hintText = "NORTHEAST",
-                        indexWhereHintBeginsInEncryptedText = 25
-                    },
-                    new SolutionHint {
-                        hintText = "BERLIN",
-                        indexWhereHintBeginsInEncryptedText = 63
-                    },
-                    new SolutionHint {
-                        hintText = "CLOCK",
-                        indexWhereHintBeginsInEncryptedText = 69
-                    }
-                }
+                encryptedText = Config.encryptedText
             };
         }
     }

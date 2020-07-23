@@ -8,17 +8,17 @@ namespace Kryptos4
 
             //1/n points each for having a clue present in the correct place.
             //1/n+1 points each for having a clue present in the wrong place.
-            foreach (var hint in problem.solutionHints)
+            foreach (var hint in Config.solutionHints)
             {
                 if (HintIsPresentInCorrectPlace(hint, solution.decryptedText))
                 {
-                    solution.score += (100 / problem.solutionHints.Count);
+                    solution.score += (100 / Config.solutionHints.Count);
                     solution.narrative.Add($"{hint.hintText} is present in the correct place.");
                 }
                 else if (HintIsPresentInWrongPlace(hint, solution.decryptedText))
                 {
                     allHintsPresentInCorrectPlace = false;
-                    solution.score += (100 / (problem.solutionHints.Count + 1));
+                    solution.score += (100 / (Config.solutionHints.Count + 1));
                     solution.narrative.Add($"{hint.hintText} is present in the wrong place.");
                 }
                 else

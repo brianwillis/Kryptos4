@@ -6,8 +6,5 @@ namespace Kryptos4
     {
         public string encryptedText;
         public string keyword;
-        public string alphabet;
-        public char[,] lookupTable;
-        public List<SolutionHint> solutionHints;
     }
 }

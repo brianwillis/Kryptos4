@@ -11,7 +11,7 @@ namespace Kryptos4
             foreach(var chr in problem.encryptedText.ToCharArray())
             {
                 // We want to skip puctuation characters.
-                if (!problem.alphabet.Contains(chr)) 
+                if (!Config.alphabet.Contains(chr)) 
                 {
                     solution.decryptedText += chr;
                     continue;
@@ -20,20 +20,20 @@ namespace Kryptos4
                 var keywordLetter = Convert.ToChar(problem.keyword.Substring(keywordIndex, 1));
                 
                 var row = 0;
-                for (row = 0; row < problem.alphabet.Length; row++)
+                for (row = 0; row < Config.alphabet.Length; row++)
                 {
-                    if (problem.lookupTable[row, 0] == keywordLetter)
+                    if (Config.lookupTable[row, 0] == keywordLetter)
                     {
                         break;
                     }
                 }
                 
                 var col = 0;
-                for (col = 0; col < problem.alphabet.Length; col++) 
+                for (col = 0; col < Config.alphabet.Length; col++) 
                 {
-                    if (problem.lookupTable[row, col] == chr)
+                    if (Config.lookupTable[row, col] == chr)
                     {
-                        solution.decryptedText += problem.lookupTable[0, col];
+                        solution.decryptedText += Config.lookupTable[0, col];
                         break;
                     }
                 }
