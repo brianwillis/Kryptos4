@@ -42,7 +42,7 @@ namespace Kryptos4
             }
         };
 
-        //The lookup tbal which we use to decrypt Vigenère cyphers.
+        //The lookup table which we use to decrypt Vigenère cyphers.
         //You don't need to set this yourself. It will be populated from the alphabet automatically.
         public static char[,] lookupTable = new char[alphabet.Length, alphabet.Length];
 
