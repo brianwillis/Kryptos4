@@ -38,14 +38,14 @@ namespace Kryptos4
             }
         }
 
-        public void Write(ProblemCommand innerCommand, ProblemCommand outerCommand, Solution solution)
+        public void Write(ProblemCommand outerCommand, ProblemCommand innerCommand, Solution solution)
         {
             try 
             {
-                var fileName = $"{solution.score} - {innerCommand.keyword} {outerCommand.keyword}";
+                var fileName = $"{solution.score} - {outerCommand.keyword} {innerCommand.keyword}";
                 
                 var report =
-                    $"Keywords: {innerCommand.keyword} {outerCommand.keyword}\n" +
+                    $"Keywords: {outerCommand.keyword} {innerCommand.keyword}\n" +
                     $"Alphabet: {Config.alphabet}\n" +
                     "Lookup table:\n";
                 

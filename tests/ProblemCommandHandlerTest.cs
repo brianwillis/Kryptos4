@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Kryptos4
@@ -6,7 +7,7 @@ namespace Kryptos4
     public class ProblemCommandHandlerTest
     {
         [Fact]
-        public void Solve_WhenSolvingKryptos1_SolutionIsCorrect()
+        public async void Solve_WhenSolvingKryptos1_SolutionIsCorrect()
         {
             Config.BuildLookupTable();
             var command = new ProblemCommand {
@@ -15,7 +16,7 @@ namespace Kryptos4
             };
             var handler = new ProblemCommandHandler();
             
-            var result = handler.Solve(command);
+            var result = await handler.Solve(command);
 
             Assert.Equal(
                 "BETWEENSUBTLESHADINGANDTHEABSENCEOFLIGHTLIESTHENUANCEOFIQLUSION",
@@ -24,7 +25,7 @@ namespace Kryptos4
         }
 
         [Fact]
-        public void Solve_WhenSolvingKryptos2_SolutionIsCorrect()
+        public async void Solve_WhenSolvingKryptos2_SolutionIsCorrect()
         {
             Config.BuildLookupTable();
             var command = new ProblemCommand {
@@ -33,7 +34,7 @@ namespace Kryptos4
             };
             var handler = new ProblemCommandHandler();
             
-            var result = handler.Solve(command);
+            var result = await handler.Solve(command);
             
             Assert.Equal(
                 "ITWASTOTALLYINVISIBLEHOWSTHATPOSSIBLE?THEYUSEDTHEEARTHSMAGNETICFIELDXTHEINFORMATIONWASGATHEREDANDTRANSMITTEDUNDERGRUUNDTOANUNKNOWNLOCATIONXDOESLANGLEYKNOWABOUTTHIS?THEYSHOULDITSBURIEDOUTTHERESOMEWHEREXWHOKNOWSTHEEXACTLOCATION?ONLYWWTHISWASHISLASTMESSAGEXTHIRTYEIGHTDEGREESFIFTYSEVENMINUTESSIXPOINTFIVESECONDSNORTHSEVENTYSEVENDEGREESEIGHTMINUTESFORTYFOURSECONDSWESTIDBYROWS",

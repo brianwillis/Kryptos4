@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Kryptos4
 {
@@ -12,7 +14,7 @@ namespace Kryptos4
             var watch = new Stopwatch();
             var start = DateTime.Now;
             watch.Start();
-            Solve();
+            Solve().Wait();
             watch.Stop();
             var finish = DateTime.Now;
             
@@ -21,11 +23,9 @@ namespace Kryptos4
             Console.WriteLine($"Elapsed time: {watch.Elapsed.TotalSeconds:F0} seconds");           
         }
 
-        private static void Solve()
+        private static async Task Solve()
         {
             var handler = new ProblemCommandHandler();
-            var scorer = new SolutionScorer();
-            var fileWriter = new SolutionFileWriter();
             
             var outerFactory = new ProblemCommandFactory();
             var outerCommand = outerFactory.GetNextCommand();
@@ -33,29 +33,18 @@ namespace Kryptos4
             {
                 Console.WriteLine(outerCommand.keyword);
 
-                var outerResult = handler.Solve(outerCommand);
-
+                var tasks = new List<Task<Solution>>();
+                var outerResult = await handler.Solve(outerCommand);
                 var innerFactory = new ProblemCommandFactory();
-                var innerCommand = innerFactory.GetNextCommand(outerResult.decryptedText);
-                while (innerCommand.keyword != innerFactory.GetLastKeyword())
-                {
-                    var innerResult = handler.Solve(innerCommand);
+                ProblemCommand innerCommand;
 
-                    scorer.Score(innerCommand, innerResult);
-
-                    if (innerResult.score >= Config.minimumScoreToReport)
-                    {
-                        fileWriter.Write(outerCommand, innerCommand, innerResult);
-
-                        if (innerResult.score == 100)
-                        {
-                            //We've found the correct solution, so we can stop.
-                            return;
-                        }
-                    }
-
+                do {   
                     innerCommand = innerFactory.GetNextCommand(outerResult.decryptedText);
-                }
+                    tasks.Add(handler.Solve(outerCommand, innerCommand));                    
+                } while (innerCommand.keyword != innerFactory.GetLastKeyword());
+
+                Task.WaitAll(tasks.ToArray());
+
                 outerCommand = outerFactory.GetNextCommand();
             }
         }
